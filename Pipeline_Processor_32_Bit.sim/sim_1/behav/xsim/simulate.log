@@ -1,19 +1,24 @@
 Time resolution is 1 ps
-Time=0 | PC=0 | $t0(8)=x | $t1(9)=x | $t2(10)=x | $t3(11)=x
-Time=5000 | PC=0 | $t0(8)=0 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=25000 | PC=4 | $t0(8)=0 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=35000 | PC=8 | $t0(8)=0 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=45000 | PC=12 | $t0(8)=0 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=55000 | PC=16 | $t0(8)=0 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=65000 | PC=20 | $t0(8)=5 | $t1(9)=0 | $t2(10)=0 | $t3(11)=0
-Time=75000 | PC=16 | $t0(8)=5 | $t1(9)=10 | $t2(10)=0 | $t3(11)=0
-Time=85000 | PC=20 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=0
-Time=95000 | PC=16 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=105000 | PC=20 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=115000 | PC=16 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=125000 | PC=20 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=135000 | PC=16 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=145000 | PC=20 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=155000 | PC=16 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-Time=165000 | PC=20 | $t0(8)=5 | $t1(9)=10 | $t2(10)=15 | $t3(11)=10
-$finish called at time : 170 ns : File "D:/UOP/Projects/FinalProject/Pipeline_Processor_32_Bit/Pipeline_Processor_32_Bit.srcs/sim_1/new/Pipeline_Processor_32_Bit_tb.sv" Line 61
+Time=0 | PC=0 | Pipeline Filling | $t0=x $t1=x $t2=x $t3=x $t4=x $t5=x $t6=x $t7=x
+Time=5000 | PC=0 | Pipeline Filling | $t0=0 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=25000 | PC=4 | Pipeline Filling | $t0=0 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=35000 | PC=8 | Pipeline Filling | $t0=0 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=45000 | PC=12 | Pipeline Filling | $t0=0 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=55000 | PC=16 | addi $t0, $zero, 5 | $t0=0 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=65000 | PC=20 | ori  $t1, $zero, 3 | $t0=5 $t1=0 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=75000 | PC=24 | add  $t2, $t0, $t1 | $t0=5 $t1=3 $t2=0 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=85000 | PC=28 | sub  $t3, $t0, $t1 | $t0=5 $t1=3 $t2=8 $t3=0 $t4=0 $t5=0 $t6=0 $t7=0
+Time=95000 | PC=32 | and  $t4, $t0, $t1 | $t0=5 $t1=3 $t2=8 $t3=2 $t4=0 $t5=0 $t6=0 $t7=0
+Time=105000 | PC=36 | or   $t5, $t0, $t1 | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=0 $t6=0 $t7=0
+Time=115000 | PC=36 | or   $t5, $t0, $t1 | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=0 $t7=0
+Time=125000 | PC=40 | sw   $t2, 0($zero) | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=0 $t7=0
+Time=135000 | PC=44 | lw   $t6, 0($zero) | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=0
+Time=145000 | PC=48 | add  $t7, $t6, $t1 | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=0
+Time=155000 | PC=52 | beq  $t2, $t6, 2 | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=165000 | PC=56 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=175000 | PC=60 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=185000 | PC=56 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=195000 | PC=60 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=205000 | PC=56 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+Time=215000 | PC=60 | Pipeline Filling | $t0=5 $t1=3 $t2=8 $t3=2 $t4=1 $t5=7 $t6=8 $t7=11
+$finish called at time : 220 ns : File "C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sim_1/new/Pipeline_Processor_32_Bit_tb.sv" Line 84

@@ -56,7 +56,10 @@ module reg_file(
     always_comb begin // work regardless of clk status
         // clear rs register and rs stored data
         if(rs_reg == 5'd0) begin
-            rs_value = 32'd0; 
+            rs_value = 32'd0;
+        end
+        else if (reg_write == 1 && rs_reg == rd_reg) begin
+            rs_value = write_data; 
         end
         else begin
             rs_value = registers[rs_reg]; // else update register rs data if there is data in rs_reg
@@ -64,12 +67,14 @@ module reg_file(
         
         // clear rt register and rt stored data
         if(rt_reg == 5'd0) begin
-            rt_value = 32'd0; 
+            rt_value = 32'd0;
+        end
+        else if (reg_write == 1 && rt_reg == rd_reg) begin
+            rt_value = write_data; 
         end
         else begin
             rt_value = registers[rt_reg];// else update register rt data if there is data in rt_reg
         end
-        
      end
     
 endmodule

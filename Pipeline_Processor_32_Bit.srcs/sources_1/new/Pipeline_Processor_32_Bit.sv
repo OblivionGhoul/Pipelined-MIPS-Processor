@@ -114,7 +114,7 @@ module Pipeline_Processor_32_Bit (
     imm_handle imm_inst (.instruction32(id_instr), .imm_extend(imm_extend));
 
     id_ex_reg id_ex_inst (
-        .clk(clk), .rst(reset), .stall(~pc_write), .clear(id_ex_clear),
+        .clk(clk), .rst(reset), .stall(1'b0), .clear(id_ex_clear),
         .reg_dst_in(id_reg_dst), .alu_src_in(id_alu_src), .mem_to_reg_in(id_mem_to_reg),
         .reg_write_in(id_reg_write), .mem_read_in(id_mem_read), .mem_write_in(id_mem_write),
         .branch_in(id_branch), .alu_op_in(id_alu_op),

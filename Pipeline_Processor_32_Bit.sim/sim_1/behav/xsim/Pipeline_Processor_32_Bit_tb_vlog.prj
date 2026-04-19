@@ -1,5 +1,5 @@
 # compile verilog/system verilog design source files
-sv xil_defaultlib  --include "../../../../../../../2025.2/Vivado/data/rsb/busdef" \
+sv xil_defaultlib  --include "D:/UOP/2025.2/Vivado/data/rsb/busdef" \
 "../../../../Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv" \
 "../../../../Pipeline_Processor_32_Bit.srcs/sources_1/new/alu.sv" \
 "../../../../Pipeline_Processor_32_Bit.srcs/sources_1/new/alu_control.sv" \
