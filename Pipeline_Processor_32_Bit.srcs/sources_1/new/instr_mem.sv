@@ -32,13 +32,13 @@ module instr_mem (
         mem[0]  = 32'h20080005; // addi $t0, $zero, 5 (Put 5 in $t0 - Reg 8)
         mem[1]  = 32'h34090003; // ori  $t1, $zero, 3 (Put 3 in $t1 - Reg 9)
         
-        // Test math and forwarding
+        // Test math
         mem[2]  = 32'h01095020; // add  $t2, $t0, $t1 ($t2 (Reg 10) = 5 + 3 = 8)
         mem[3]  = 32'h01095822; // sub  $t3, $t0, $t1 ($t3 (Reg 11) = 5 - 3 = 2)
         mem[4]  = 32'h01096024; // and  $t4, $t0, $t1 ($t4 (Reg 12) = 5 AND 3 = 1)
         mem[5]  = 32'h01096825; // or   $t5, $t0, $t1 ($t5 (Reg 13) = 5 OR 3 = 7)
         
-        // Test memory and stalling
+        // Test memory and stalling for forwarding
         mem[6]  = 32'hAC0A0000; // sw   $t2, 0($zero) (Store 8 into memory address 0)
         mem[7]  = 32'h8C0E0000; // lw   $t6, 0($zero) (Load from memory address 0 into $t6 - Reg 14 = 8)
         mem[8]  = 32'h01C97820; // add  $t7, $t6, $t1 ($t7 (Reg 15) = 8 + 3 = 11) - Testing hazard unit
