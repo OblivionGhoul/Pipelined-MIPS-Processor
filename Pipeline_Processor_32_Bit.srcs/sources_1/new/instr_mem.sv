@@ -38,7 +38,7 @@ module instr_mem (
         mem[4]  = 32'h01096024; // and  $t4, $t0, $t1 ($t4 (Reg 12) = 5 AND 3 = 1)
         mem[5]  = 32'h01096825; // or   $t5, $t0, $t1 ($t5 (Reg 13) = 5 OR 3 = 7)
         
-        // Test memory and stalling for forwarding
+        // Test memory and stalling for "load-use" hazard
         mem[6]  = 32'hAC0A0000; // sw   $t2, 0($zero) (Store 8 into memory address 0)
         mem[7]  = 32'h8C0E0000; // lw   $t6, 0($zero) (Load from memory address 0 into $t6 - Reg 14 = 8)
         mem[8]  = 32'h01C97820; // add  $t7, $t6, $t1 ($t7 (Reg 15) = 8 + 3 = 11) - Testing hazard unit
@@ -52,16 +52,20 @@ module instr_mem (
         mem[12] = 32'h0800000E; // j    address 14     (Jump past the next instruction)
         mem[13] = 32'h200A0063; // addi $t2, $zero, 99 (Should be skipped)
         
-        // End of test
-        mem[14] = 32'h0800000E; // j    address 14     (Loop to stop the program)
+        // Test forwarding module
+        mem[14] = 32'h0109C020; // add  $t8, $t0, $t1 ($t8 (Reg 24) = 5 + 3 = 8)
+        mem[15] = 32'h0308C822; // sub  $t9, $t8, $t0 ($t9 (Reg 25) = 8 - 5 = 3)
         
-        // Initialize a few extra remaining memory slots to 0
-        for (integer i = 15; i < 32; i++) begin
+        // End of test
+        mem[16] = 32'h08000010; // j    address 16     (Loop to stop the program)
+        
+        // Initialize extra remaining memory slots to 0
+        for (integer i = 17; i < 32; i++) begin
             mem[i] = 32'd0;
         end
     end
 
-    // Word-aligned addressing: addr[31:2]
+    // Word align the address (addr[31:2])
     assign instr = mem[addr[31:2]];
 
 endmodule
