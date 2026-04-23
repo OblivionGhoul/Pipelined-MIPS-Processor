@@ -133,13 +133,13 @@ module Pipeline_Processor_32_Bit (
 
     // Muxes for forwarding
     always_comb begin
-        // Mux for ALU Input A
+        // Mux for ALU input A
         case(forward_a)
             2'b10: alu_in_a = ex_mem_alu_result; // Forward from EX/MEM
             2'b01: alu_in_a = write_data_out;    // Forward from MEM/WB
             default: alu_in_a = id_ex_rs_value;  // Normal
         endcase
-        // Mux for ALU Input B (Pre-Immediate Mux)
+        // Mux for ALU input B (pre-immediate)
         case(forward_b)
             2'b10: alu_in_b_temp = ex_mem_alu_result; 
             2'b01: alu_in_b_temp = write_data_out;    

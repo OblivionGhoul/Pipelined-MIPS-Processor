@@ -5,7 +5,7 @@
 // 
 // Create Date: 04/12/2026 09:57:10 PM
 // Design Name: 
-// Module Name: top_level
+// Module Name: ex_mem_reg
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

@@ -14,14 +14,15 @@ Time=              115000 | PC=36 |              or   $t5, $t0, $t1 | $t0=5  $t1
 Time=              125000 | PC=40 |              sw   $t2, 0($zero) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6= 0 $t7= 0 $t8= 0 $t9= 0
 Time=              135000 | PC=44 |              lw   $t6, 0($zero) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7= 0 $t8= 0 $t9= 0
 Time=              145000 | PC=48 |              add  $t7, $t6, $t1 | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7= 0 $t8= 0 $t9= 0
-Time=              155000 | PC=52 |                beq  $t2, $t6, 2 | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              165000 | PC=56 |   addi $t0, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              175000 | PC=60 |   addi $t1, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              185000 | PC=64 |         j    14 (Jump to PC 56) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              195000 | PC=68 |   addi $t2, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              205000 | PC=64 |              add  $t8, $t0, $t1 | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
-Time=              215000 | PC=68 |              sub  $t9, $t8, $t0 | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9= 0
-Time=              225000 | PC=64 |         j    16 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
-Time=              235000 | PC=68 |         j    16 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
-Time=              245000 | PC=64 |         j    16 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
-$finish called at time : 250 ns : File "C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sim_1/new/Pipeline_Processor_32_Bit_tb.sv" Line 102
+Time=              155000 | PC=52 |             addi $t3, $zero, -5 | $t0=5  $t1=3  $t2=8  $t3=2  $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              165000 | PC=56 |                beq  $t2, $t6, 2 | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              175000 | PC=60 |   addi $t0, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              185000 | PC=64 |   addi $t1, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              195000 | PC=68 |         j    15 (Jump to PC 60) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              205000 | PC=72 |   addi $t2, $zero, 99 (Skipped) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              215000 | PC=68 |              add  $t8, $t0, $t1 | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8= 0 $t9= 0
+Time=              225000 | PC=72 |              sub  $t9, $t8, $t0 | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9= 0
+Time=              235000 | PC=68 |         j    17 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
+Time=              245000 | PC=72 |         j    17 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
+Time=              255000 | PC=68 |         j    17 (Infinite Loop) | $t0=5  $t1=3  $t2=8  $t3=-5 $t4=1  $t5=7  $t6=8  $t7=11 $t8=8  $t9=3 
+$finish called at time : 260 ns : File "C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sim_1/new/Pipeline_Processor_32_Bit_tb.sv" Line 103

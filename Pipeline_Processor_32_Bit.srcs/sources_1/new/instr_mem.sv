@@ -43,24 +43,27 @@ module instr_mem (
         mem[7]  = 32'h8C0E0000; // lw   $t6, 0($zero) (Load from memory address 0 into $t6 - Reg 14 = 8)
         mem[8]  = 32'h01C97820; // add  $t7, $t6, $t1 ($t7 (Reg 15) = 8 + 3 = 11) - Testing hazard unit
         
-        // Test branch and jump
-        mem[9]  = 32'h114E0002; // beq  $t2, $t6, 2    (If $t2(8) == $t6(8), skip the next 2 instructions)
-        mem[10] = 32'h20080063; // addi $t0, $zero, 99 (Should be skipped)
-        mem[11] = 32'h20090063; // addi $t1, $zero, 99 (Should be skipped)
+        // Test negative number
+        mem[9]  = 32'h200BFFFB; // addi $t3, $zero, -5 (Put -5 in $t3 - Reg 11)
+        
+        // Test branch and jump (Shifted down by 1)
+        mem[10] = 32'h114E0002; // beq  $t2, $t6, 2    (If $t2(8) == $t6(8), skip the next 2 instructions)
+        mem[11] = 32'h20080063; // addi $t0, $zero, 99 (Should be skipped)
+        mem[12] = 32'h20090063; // addi $t1, $zero, 99 (Should be skipped)
         
         // Jump the next instruction
-        mem[12] = 32'h0800000E; // j    address 14     (Jump past the next instruction)
-        mem[13] = 32'h200A0063; // addi $t2, $zero, 99 (Should be skipped)
+        mem[13] = 32'h0800000F; // j    address 15     (Jump past the next instruction)
+        mem[14] = 32'h200A0063; // addi $t2, $zero, 99 (Should be skipped)
         
         // Test forwarding module
-        mem[14] = 32'h0109C020; // add  $t8, $t0, $t1 ($t8 (Reg 24) = 5 + 3 = 8)
-        mem[15] = 32'h0308C822; // sub  $t9, $t8, $t0 ($t9 (Reg 25) = 8 - 5 = 3)
+        mem[15] = 32'h0109C020; // add  $t8, $t0, $t1 ($t8 (Reg 24) = 5 + 3 = 8)
+        mem[16] = 32'h0308C822; // sub  $t9, $t8, $t0 ($t9 (Reg 25) = 8 - 5 = 3)
         
         // End of test
-        mem[16] = 32'h08000010; // j    address 16     (Loop to stop the program)
+        mem[17] = 32'h08000011; // j    address 17     (Loop to stop the program)
         
         // Initialize extra remaining memory slots to 0
-        for (integer i = 17; i < 32; i++) begin
+        for (integer i = 18; i < 32; i++) begin
             mem[i] = 32'd0;
         end
     end
