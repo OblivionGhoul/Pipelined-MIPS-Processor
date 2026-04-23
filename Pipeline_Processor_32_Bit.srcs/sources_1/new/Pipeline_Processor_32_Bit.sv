@@ -199,5 +199,5 @@ module Pipeline_Processor_32_Bit (
     forwarding_unit fwd_inst (.id_ex_rs(id_ex_rs), .id_ex_rt(id_ex_rt),.ex_mem_rd(ex_mem_write_reg), .ex_mem_regwrite(ex_mem_wb_regwrite),.mem_wb_rd(mem_wb_write_reg), .mem_wb_regwrite(mem_wb_regwrite),.forward_a(forward_a), .forward_b(forward_b));
 
     hazard_detection_unit hdu_inst (.if_id_rs(rs), .if_id_rt(rt),.id_ex_rt(id_ex_rt), .id_ex_memread(id_ex_mem_read),.pc_write(pc_write), .if_id_write(if_id_write), .control_mux(control_mux));
-
+    
 endmodule
