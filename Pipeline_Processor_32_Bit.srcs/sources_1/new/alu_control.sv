@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/15/2026 08:30:47 AM
+// Create Date: 04/15/2026 
 // Design Name: 
 // Module Name: alu_control
 // Project Name: 
@@ -24,24 +24,24 @@
 
 
 module alu_control(
-    input logic [2:0] alu_op, // 3 bit operation code of type of instruction like and, add, sub 
+    input logic [1:0] alu_op, // 2 bit operation code of type of instruction like and, add, sub 
     input logic [5:0] funct_op, // 6 bit identifier for what operation is apart of the 32 bit instruction
-    output logic [3:0] alu_ctrl_signal // 4 bit setup for control signal that goes into alu, exact command into ALU for operation to execute
+    output logic [2:0] alu_ctrl_signal // 3 bit setup for control signal that goes into alu, exact command into ALU for operation to execute
     );
     
     // tells alu what operation will be done
-    logic [3:0] ctrl_AND = 4'b0000;
-    logic [3:0] ctrl_OR = 4'b0001;
-    logic [3:0] ctrl_SUB = 4'b0110;
-    logic [3:0] ctrl_ADD = 4'b0010;
-    logic [3:0] ctrl_NOP = 4'b1111; // do nothing, usually used to allow time for other operations to finish before continuing
+    logic [2:0] ctrl_AND = 3'b000;
+    logic [2:0] ctrl_OR = 3'b001;
+    logic [2:0] ctrl_SUB = 3'b011;
+    logic [2:0] ctrl_ADD = 3'b100;
+    logic [2:0] ctrl_NOP = 3'b101; // do nothing, usually used to allow time for other operations to finish before continuing
                                     // like when a register is being updated and then read next line.
     
     // the instruction type filter depending on the type of function
-    logic [2:0] OPcode_ADD = 3'b000; // addi, lw, sw
-    logic [2:0] OPcode_SUB = 3'b001; // beq
-    logic [2:0] OPcode_Rtype = 3'b010; // function type for specifics of r-type instruction functions
-    logic [2:0] OPcode_ORI = 3'b011;    // ori
+    logic [1:0] OPcode_ADD = 2'b00; // addi, lw, sw
+    logic [1:0] OPcode_SUB = 2'b01; // beq
+    logic [1:0] OPcode_ORI = 2'b10;    // ori
+    logic [1:0] OPcode_Rtype = 2'b11; // function type for specifics of r-type instruction functions
     
     always_comb begin
         case(alu_op)

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/15/2026 08:30:47 AM
+// Create Date: 04/15/2026 
 // Design Name: 
-// Module Name: alu_control
+// Module Name: control_unit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -33,86 +33,87 @@ module control_unit(
     output logic mem_write, // write enable
     output logic branch,
     output logic jump,
-    output logic [2:0] alu_op //alu control operation to be done
+    output logic [1:0] alu_op //alu control operation to be done
     
     );
     
-    logic [2:0] OPcode_ADD = 3'b000; // addi, lw, sw
-    logic [2:0] OPcode_SUB = 3'b001; // beq
-    logic [2:0] OPcode_Rtype = 3'b010; // function type for specifics of r-type instruction functions
-    logic [2:0] OPcode_ORI = 3'b011;    // ori
+    logic [1:0] OPcode_ADD = 2'b00; // addi, lw, sw
+    logic [1:0] OPcode_SUB = 2'b01; // beq
+    logic [1:0] OPcode_ORI = 2'b10;    // ori
+    logic [1:0] OPcode_Rtype = 2'b11; // function type for specifics of r-type instruction functions
+    
     
     
     always_comb begin 
     
     // set all variables to 0 to begin
-        reg_dst    = 1'b0;
-        alu_src    = 1'b0;
+        reg_dst = 1'b0;
+        alu_src = 1'b0;
         mem_to_reg = 1'b0;
-        reg_write  = 1'b0;
-        mem_read   = 1'b0;
-        mem_write  = 1'b0;
-        branch     = 1'b0;
-        jump       = 1'b0;
-        alu_op     = OPcode_ADD; 
+        reg_write = 1'b0;
+        mem_read = 1'b0;
+        mem_write = 1'b0;
+        branch = 1'b0;
+        jump = 1'b0;
+        alu_op = OPcode_ADD; 
         
         case(opcode)
             6'b000000: begin  // rtype: add, sub, and, or opcode
-                reg_dst   = 1'b1; // result written into rd 
-                alu_src   = 1'b0; // not immediate value, comes from rt value
+                reg_dst = 1'b1; // result written into rd 
+                alu_src = 1'b0; // not immediate value, comes from rt value
                 reg_write = 1'b1; //  enable write to register file
-                alu_op    = OPcode_Rtype; 
+                alu_op = OPcode_Rtype; 
             end
             
             6'b001000: begin  // addi opcode
-                reg_dst   = 1'b0; // result written into rt
-                alu_src   = 1'b1; // second input comes from immediate value
+                reg_dst = 1'b0; // result written into rt
+                alu_src = 1'b1; // second input comes from immediate value
                 reg_write = 1'b1; // enable write to register file
-                alu_op    = OPcode_ADD;
+                alu_op = OPcode_ADD;
             end
             
             6'b001101: begin  // ORI opcode
-                reg_dst   = 1'b0; // result written into rt
-                alu_src   = 1'b1; // second input comes from immediate value
+                reg_dst = 1'b0; // result written into rt
+                alu_src = 1'b1; // second input comes from immediate value
                 reg_write = 1'b1; // enable write to register file
-                alu_op    = OPcode_ORI;
+                alu_op = OPcode_ORI;
             end
             
             6'b100011: begin  // LW opcode
-                reg_dst   = 1'b0; // result written into rt
-                alu_src   = 1'b1; // second input comes from immediate value
+                reg_dst = 1'b0; // result written into rt
+                alu_src = 1'b1; // second input comes from immediate value
                 reg_write = 1'b1; // enable write to register file
                 mem_to_reg = 1'b1; // write data from memory to the register
                 mem_read = 1'b1;    // read the data from the memory
-                alu_op    = OPcode_ADD;
+                alu_op = OPcode_ADD;
             end
             
             6'b101011: begin  // SW opcode
-                alu_src   = 1'b1; // second input comes from immediate value
+                alu_src = 1'b1; // second input comes from immediate value
                 mem_write = 1'b1; // write data from memory to the register
-                alu_op    = OPcode_ADD;
+                alu_op = OPcode_ADD;
             end
             
             6'b000100: begin  // BEQ opcode
-                branch   = 1'b1; // might branch so do a check
-                alu_op    = OPcode_SUB; // subtract rs and rd values, if the values are 0 then branch condition is done, if not continue to next line
+                branch = 1'b1; // might branch so do a check
+                alu_op = OPcode_SUB; // subtract rs and rd values, if the values are 0 then branch condition is done, if not continue to next line
             end
             
             6'b000010: begin  // J opcode
-                jump   = 1'b1; // jump does not use other components
+                jump = 1'b1; // jump does not use other components
             end
             
             default: begin
                 // if error opcode want all set to x to show unknowna nd easy error identification
-                reg_dst    = 1'bx;
-                alu_src    = 1'bx;
+                reg_dst = 1'bx;
+                alu_src = 1'bx;
                 mem_to_reg = 1'bx;
-                reg_write  = 1'bx;
-                mem_read   = 1'bx;
-                mem_write  = 1'bx;
-                branch     = 1'bx;
-                jump       = 1'bx;
-                alu_op     = 3'bxxx;
+                reg_write = 1'bx;
+                mem_read = 1'bx;
+                mem_write = 1'bx;
+                branch = 1'bx;
+                jump = 1'bx;
+                alu_op = 2'bxx;
             end
         endcase
     end

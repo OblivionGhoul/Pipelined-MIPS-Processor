@@ -28,11 +28,11 @@ module forwarding_unit (
     
     // The instruction in the MEM stage that is writing back
     input  logic [4:0] ex_mem_rd,
-    input  logic       ex_mem_regwrite,
+    input  logic ex_mem_regwrite,
     
     // The instruction in the WB stage that is writing back
     input  logic [4:0] mem_wb_rd,
-    input  logic       mem_wb_regwrite,
+    input  logic mem_wb_regwrite,
     
     // Outputs that controls the ALU input muxes
     // 00 = Normal, 10 = Forward from EX/MEM, 01 = Forward from MEM/WB

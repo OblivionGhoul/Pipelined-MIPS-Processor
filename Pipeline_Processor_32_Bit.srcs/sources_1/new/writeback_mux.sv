@@ -22,10 +22,10 @@
 
 // Chooses either the ALU result or memory result to send back to the register file
 module writeback_mux (
-    input  logic        mem_to_reg,     // 1 = Mem, 0 = ALU
-    input  logic [31:0] alu_result,     // ALU result
-    input  logic [31:0] read_data,      // Memory result
-    output logic [31:0] write_data_out  // Output to be sent to the register file
+    input  logic mem_to_reg,           // 1 = Mem, 0 = ALU
+    input  logic [31:0] alu_result,    // ALU result
+    input  logic [31:0] read_data,     // Memory result
+    output logic [31:0] write_data_out // Output to be sent to the register file
 );
 
     // If mem_to_reg = 1, output is read_data. Otherwise, output is alu_result

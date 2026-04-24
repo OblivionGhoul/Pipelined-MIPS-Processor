@@ -22,9 +22,9 @@
 
 // The data memory that is used by LW (load word) and SW (store word)
 module data_mem (
-    input  logic        clk,
-    input  logic        mem_read,   // 1 if LW
-    input  logic        mem_write,  // 1 if SW
+    input  logic clk,
+    input  logic mem_read,          // 1 if LW
+    input  logic mem_write,         // 1 if SW
     input  logic [31:0] address,    // Address of result
     input  logic [31:0] write_data, // The data that will be stored into memory (for SW)
     output logic [31:0] read_data   // The data that will be retrieved from memory (for LW)

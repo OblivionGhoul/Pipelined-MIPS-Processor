@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/15/2026 08:30:47 AM
+// Create Date: 04/15/2026 
 // Design Name: 
-// Module Name: alu_control
+// Module Name: id_ex_reg
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -36,7 +36,7 @@ module id_ex_reg(
     input logic mem_read_in,  // read enable
     input logic mem_write_in, // write enable
     input logic branch_in,  // branch instruction coming in
-    input logic [2:0] alu_op_in, // alu opcode for operation type
+    input logic [1:0] alu_op_in, // alu opcode for operation type
     
     // datapath decode values
     input logic [31:0] pc_plus4_in, //32 bits add 4 to pc counter
@@ -56,7 +56,7 @@ module id_ex_reg(
     output logic mem_read_out,  // read enable
     output logic mem_write_out, // write enable
     output logic branch_out,  // branch instruction coming in
-    output logic [2:0] alu_op_out,
+    output logic [1:0] alu_op_out,
     
     // all stored values going to execute stage
     // cannot keep same signal because of clk edge updating
@@ -73,43 +73,43 @@ module id_ex_reg(
     
     always_ff @(posedge clk) begin // do updates and work on clocks pos edge
         if(rst == 1 || clear == 1) begin // if reset or clean is 1, then we clear all outputs
-            reg_dst_out    <= 1'b0;      // same as adding bubble or NOP, which is a hold on the pipeline for hazard detection
-            alu_src_out    <= 1'b0;
+            reg_dst_out <= 1'b0;      // same as adding bubble or NOP, which is a hold on the pipeline for hazard detection
+            alu_src_out <= 1'b0;
             mem_to_reg_out <= 1'b0;
-            reg_write_out  <= 1'b0;
-            mem_read_out   <= 1'b0;
-            mem_write_out  <= 1'b0;
-            branch_out     <= 1'b0;
-            alu_op_out     <= 3'b000;
+            reg_write_out <= 1'b0;
+            mem_read_out <= 1'b0;
+            mem_write_out <= 1'b0;
+            branch_out <= 1'b0;
+            alu_op_out <= 2'b00;
 
-            pc_plus4_out   <= 32'd0;
-            rs_value_out    <= 32'd0;
-            rt_value_out    <= 32'd0;
-            imm_extend_out  <= 32'd0;
-            rs_out         <= 5'd0;
-            rt_out         <= 5'd0;
-            rd_out         <= 5'd0;
-            function_out   <= 6'd0;    
+            pc_plus4_out <= 32'd0;
+            rs_value_out <= 32'd0;
+            rt_value_out <= 32'd0;
+            imm_extend_out <= 32'd0;
+            rs_out <= 5'd0;
+            rt_out <= 5'd0;
+            rd_out <= 5'd0;
+            function_out <= 6'd0;    
         end
         
         else if (stall == 0) begin // if there is no stall then update out variables to go to execution stage registers
-            reg_dst_out    <= reg_dst_in;
-            alu_src_out    <= alu_src_in;
+            reg_dst_out <= reg_dst_in;
+            alu_src_out <= alu_src_in;
             mem_to_reg_out <= mem_to_reg_in;
-            reg_write_out  <= reg_write_in;
-            mem_read_out   <= mem_read_in;
-            mem_write_out  <= mem_write_in;
-            branch_out     <= branch_in;
-            alu_op_out     <= alu_op_in;
+            reg_write_out <= reg_write_in;
+            mem_read_out <= mem_read_in;
+            mem_write_out <= mem_write_in;
+            branch_out <= branch_in;
+            alu_op_out <= alu_op_in;
 
-            pc_plus4_out   <= pc_plus4_in;
-            rs_value_out    <= rs_value_in;
-            rt_value_out    <= rt_value_in;
+            pc_plus4_out <= pc_plus4_in;
+            rs_value_out <= rs_value_in;
+            rt_value_out <= rt_value_in;
             imm_extend_out <= imm_extend_in;
-            rs_out         <= rs_in;
-            rt_out         <= rt_in;
-            rd_out         <= rd_in;
-            function_out   <= function_in;
+            rs_out <= rs_in;
+            rt_out <= rt_in;
+            rd_out <= rd_in;
+            function_out <= function_in;
         end
         // if there is a stall we do nothing and old values stay in the pipeline
     end

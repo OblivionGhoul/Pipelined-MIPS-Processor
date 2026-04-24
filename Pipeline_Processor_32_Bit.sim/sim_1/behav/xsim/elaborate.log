@@ -5,6 +5,11 @@ Running: D:/UOP/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typ
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_op' [C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv:110]
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_op_in' [C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv:120]
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_op_out' [C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv:125]
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_op' [C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv:132]
+WARNING: [VRFC 10-3091] actual bit length 4 differs from formal bit length 3 for port 'alu_ctrl_signal' [C:/Users/Minh Dinh/Documents/GitHub/Pipelined-MIPS-Processor/Pipeline_Processor_32_Bit.srcs/sources_1/new/Pipeline_Processor_32_Bit.sv:153]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

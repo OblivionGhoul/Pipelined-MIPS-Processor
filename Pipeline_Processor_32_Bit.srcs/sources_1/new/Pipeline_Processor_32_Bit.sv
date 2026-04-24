@@ -49,11 +49,11 @@ module Pipeline_Processor_32_Bit (
 
     logic [4:0] rs, rt, rd;
     logic [5:0] opcode, funct;
-    assign rs     = id_instr[25:21];
-    assign rt     = id_instr[20:16];
-    assign rd     = id_instr[15:11];
+    assign rs = id_instr[25:21];
+    assign rt = id_instr[20:16];
+    assign rd = id_instr[15:11];
     assign opcode = id_instr[31:26];
-    assign funct  = id_instr[5:0];
+    assign funct = id_instr[5:0];
 
     logic [31:0] rs_value, rt_value, imm_extend;
     logic reg_dst, alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, jump;
@@ -64,14 +64,14 @@ module Pipeline_Processor_32_Bit (
     logic id_reg_dst, id_alu_src, id_mem_to_reg, id_reg_write, id_mem_read, id_mem_write, id_branch;
     logic [2:0] id_alu_op;
     
-    assign id_reg_dst    = control_mux ? reg_dst    : 1'b0;
-    assign id_alu_src    = control_mux ? alu_src    : 1'b0;
+    assign id_reg_dst = control_mux ? reg_dst : 1'b0;
+    assign id_alu_src = control_mux ? alu_src : 1'b0;
     assign id_mem_to_reg = control_mux ? mem_to_reg : 1'b0;
-    assign id_reg_write  = control_mux ? reg_write  : 1'b0;
-    assign id_mem_read   = control_mux ? mem_read   : 1'b0;
-    assign id_mem_write  = control_mux ? mem_write  : 1'b0;
-    assign id_branch     = control_mux ? branch     : 1'b0;
-    assign id_alu_op     = control_mux ? alu_op     : 3'b000;
+    assign id_reg_write = control_mux ? reg_write : 1'b0;
+    assign id_mem_read = control_mux ? mem_read : 1'b0;
+    assign id_mem_write = control_mux ? mem_write : 1'b0;
+    assign id_branch = control_mux ? branch : 1'b0;
+    assign id_alu_op = control_mux ? alu_op : 3'b000;
 
     // EX (Execute) signals
     logic id_ex_reg_dst, id_ex_alu_src, id_ex_mem_to_reg, id_ex_reg_write;
